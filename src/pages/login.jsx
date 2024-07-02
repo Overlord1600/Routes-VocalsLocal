@@ -1,20 +1,21 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./Login.css";
-import { Link } from 'react-router-dom';
+import {  Link, useNavigate } from "react-router-dom";
+import "./login.css";
 
-const CustomLogin = () => {
+
+function CustomLogin({setIsAuth}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
     const handleLogin = (event) => {
-        event.preventDefault();
+       event.preventDefault();
 
         // Simple hardcoded check for demonstration purposes
         if (username === 'admin' && password === 'password') {
-            alert('Login successful!');
             navigate('/home');
+            setIsAuth(true);
+            alert('Login successful!');
         } else {
             alert('Invalid username or password');
         }
@@ -46,6 +47,9 @@ const CustomLogin = () => {
 
                 <button type="submit">Login</button>
             </form>
+            <p className="login-link">
+                Already have an account? <Link to="/register">Sign Up here</Link>
+            </p>
         </div>
     );
 };
